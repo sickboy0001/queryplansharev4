@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<UserRemoteCheckSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<setting>
+		<comment>
+			<List>
+				<CommentList>
+					<CommentItem>取得した実行推定プランです。</CommentItem>
+					<CommentItem>「Show_Estimate_Result」を押下することで一度取得した推定実行クエリプランを確認できます。</CommentItem>
+					<CommentItem>Autoを押下することで、SQLServerに対して、対象クエリの推定実行クエリプランの入手が可能です。</CommentItem>
+					<CommentItem>Manualを押下することで、入手済みの推定実行プランを登録することができます。</CommentItem>
+				</CommentList>
+			</List>
+			<QueryRegist>
+				<CommentList>
+					<CommentItem>推定実行プラン用クエリを登録します。</CommentItem>
+					<CommentItem>推定実行プラン用クエリは「一覧」から確認可能性です</CommentItem>
+				</CommentList>
+			</QueryRegist>
+			<EstimateDetail>
+				<CommentList>
+					<CommentItem>取得した、推定実行クエリプランの情報です。</CommentItem>
+					<CommentItem>再度実行する場合には、「推定実行プランの再取得」を押下お願いします。遷移後、条件指定して、再取得することで可能です。</CommentItem>
+					<CommentItem>「SQLPlanXml」から「テキスト保存」押下することで「xxxx.sqlplan」形式で保存し、SSMSでの確認が可能になります</CommentItem>
+					<CommentItem>----</CommentItem>
+					<CommentItem>`StmtText`	PLAN_ROW 型でない行の場合、この列には、SQL transact-sql ステートメントのテキストが格納されます。 PLAN_ROW 型の行の場合、この列には操作の説明が含まれます。 またこの列には物理操作と、必要に応じて論理操作が含まれます。 この列の後に説明が続くこともありますが、その説明は物理操作によって決定されます。 詳細については、「プラン表示の論理操作と物理操作のリファレンス」を参照してください。</CommentItem>
+					<CommentItem>`StmtId`	現在のバッチに含まれるステートメント数。</CommentItem>
+					<CommentItem>`NodeId`	現在のクエリに含まれるノードの ID。</CommentItem>
+					<CommentItem>`Parent`	親ステップのノード ID。</CommentItem>
+					<CommentItem>`PhysicalOp`	ノードの物理実装アルゴリズム。 型 PLAN_ROWS の行のみ。</CommentItem>
+					<CommentItem>`LogicalOp`	ノードが表す関係代数操作。 型 PLAN_ROWS の行のみ。</CommentItem>
+					<CommentItem>`Argument`	実行されている操作に関する補足情報を指定します。 この列の内容は、物理操作に応じて異なります。</CommentItem>
+					<CommentItem>`DefinedValues`	この演算子によって導入された値のコンマ区切りの一覧を含みます。 これらの値は、現在のクエリ (たとえば、SELECT リストや WHERE 句) に指定された計算式であるか、またはこのクエリを処理するためにクエリ プロセッサで導入された内部値です。 これらの定義された値は、このクエリ内の他の場所で参照される可能性があります。 型 PLAN_ROWS の行のみ。</CommentItem>
+					<CommentItem>`EstimateRows`	操作によって出力される行数の見積もり。 型 PLAN_ROWS の行のみ。</CommentItem>
+					<CommentItem>`EstimateIO`	この演算子の推定 I/O コスト*。 型 PLAN_ROWS の行のみ。</CommentItem>
+					<CommentItem>`EstimateCPU`	操作の CPU コスト* の見積もり。 型 PLAN_ROWS の行のみ。</CommentItem>
+					<CommentItem>`AvgRowSize`	この演算子に渡される行の推定平均行サイズ (バイト単位)。</CommentItem>
+					<CommentItem>`TotalSubtreeCost`	この操作とすべての子操作の推定 (累積) コスト*。</CommentItem>
+					<CommentItem>`OutputList`	現在の演算によって示される列のコンマ区切りの一覧。</CommentItem>
+					<CommentItem>`Warnings`	現在の演算に関係する警告メッセージのコンマ区切りの一覧。 警告メッセージには、列の一覧が指定された文字列 "NO STATS:()" が含まれる場合があります。 この警告メッセージは、クエリ オプティマイザーによって、この列の統計に基づいて判断が試行され、使用できるものがなかったことを意味します。 その結果、クエリ オプティマイザーで推測する必要があり、結果として非効率的なクエリ プランが選択された可能性がありました。 クエリ オプティマイザーで効率的なクエリ プランを選択できるような列統計を作成し更新する方法の詳細については、「UPDATE STATISTICS」を参照してください。 この列には、必要に応じて文字列 "MISSING JOIN PREDICATE" を含めることができます。これは、(テーブルを含む) 結合が結合述語なしで行われていることを意味します。 結合述部を誤ってドロップすると、クエリの実行に予想よりも時間がかかり、膨大な結果セットが返される可能性があります。 この警告が返された場合は、結合述語が意図的に省略されているかどうかを確認してください。</CommentItem>
+					<CommentItem>`Type`	ノード型です。 各クエリの親ノードについては、これは SQL transact-sql のステートメントの種類 (SELECT、INSERT、EXECUTE など) です。 実行プランを表すサブノードの場合、種類は PLAN_ROW です。</CommentItem>
+					<CommentItem>`Parallel`	0 = 操作は並列実行されません。1 = 操作は並列実行されます。</CommentItem>
+					<CommentItem>`EstimateExecutions`	現在のクエリの実行中に、操作が実行される推定回数。</CommentItem>
+				</CommentList>
+			</EstimateDetail>
+			<EstimateObtain>
+				<CommentList>
+					<CommentItem>指定されたクエリをSQLServerに対して推定実行プラン入手を行います。</CommentItem>
+					<CommentItem>一度入手した、推定クエリプランは「一覧」から確認可能性です</CommentItem>
+				</CommentList>
+			</EstimateObtain>
+			<EstimateManual>
+				<CommentList>
+					<CommentItem>手動で出力されたSQLPlanを取り込みます。</CommentItem>
+					<CommentItem>SQLPlanの取得方法はSSMSなどで、「クエリ」を実行後、結果を保存することで取得可能です。</CommentItem>
+					<CommentItem>「クエリ」に記載されている「」はクエリの実際の命令は行わず、推定実行プランの取得のみを行う設定をONにする意味合いです。</CommentItem>
+					<CommentItem>病院コードは、Hpcdを指定する必要があります。社内の場合には「initial」の入力が必要です。</CommentItem>
+					<CommentItem>確認したいクエリの前後に「SET SHOWPLAN_XML ON/OFF」が必用です。（「Query」タブ参照）</CommentItem>
+				</CommentList>
+			</EstimateManual>
+			
+		</comment>
+		<SQLPlanCondition>
+			<Statements>
+				<Attributes>
+					<Item>StatementText</Item>
+					<Item>StatementId</Item>
+					<Item>StatementCompId</Item>
+					<Item>StatementType</Item>
+					<Item>StatementSubTreeCost</Item>
+					<Item>StatementEstRows</Item>
+					<Item>StatementOptmLevel</Item>
+					<Item>QueryHash</Item>
+					<Item>QueryPlanHash</Item>
+					<Item>StatementOptmEarlyAbortReason</Item>
+					<Item>StatementSetOptions-QUOTED_IDENTIFIER</Item>
+					<Item>StatementSetOptions-ARITHABORT</Item>
+					<Item>StatementSetOptions-CONCAT_NULL_YIELDS_NULL</Item>
+					<Item>StatementSetOptions-ANSI_NULLS</Item>
+					<Item>StatementSetOptions-ANSI_PADDING</Item>
+					<Item>StatementSetOptions-ANSI_WARNINGS</Item>
+					<Item>StatementSetOptions-NUMERIC_ROUNDABORT</Item>
+					<Item>QueryPlan-CachedPlanSize</Item>
+					<Item>QueryPlan-CompileTime</Item>
+					<Item>QueryPlan-CompileCPU</Item>
+					<Item>QueryPlan-CompileMemory</Item>
+				</Attributes>
+			</Statements>
+			<Repl>
+				<Condition>
+					<Attribute>NodeId</Attribute>
+				</Condition>
+				<Attributes>
+					<Item>NodeId</Item>
+					<Item>PhysicalOp</Item>
+					<Item>LogicalOp</Item>
+					<Item>EstimateRows</Item>
+					<Item>EstimateIO</Item>
+					<Item>EstimateCPU</Item>
+					<Item>AvgRowSize</Item>
+					<Item>EstimatedTotalSubtreeCost</Item>
+					<Item>Parallel</Item>
+					<Item>EstimateRebinds</Item>
+					<Item>EstimateRewinds</Item>
+				</Attributes>
+				<ChildNodes>
+					<Item>OutputList</Item>
+					<Item>MemoryFractions</Item>
+				</ChildNodes>
+				<Operation>
+					<Item>NestedLoops</Item>
+					<Item>Sort</Item>
+					<Item>ComputeScalar</Item>
+					<Item>StreamAggregate</Item>
+					<Item>Filter</Item>
+					<Item>Segment</Item>
+					<Item>SequenceProject</Item>
+					<Item>Assert</Item>
+					<Item>Concat</Item>
+				</Operation>
+				<Subinfos>
+					<Subinfo>
+							<Id>OutputList</Id>
+							<Name>OutputList</Name>
+							<NodeCondition>OutputList</NodeCondition>
+							<ToText></ToText>
+					</Subinfo>
+					<Subinfo>
+							<Id>Object</Id>
+							<Name>Object</Name>
+							<NodeCondition>*-Object</NodeCondition>
+							<ToText></ToText>
+					</Subinfo>
+					<Subinfo>
+							<Id>SeekPredicates</Id>
+							<Name>SeekPredicates</Name>
+							<NodeCondition>*-SeekPredicates</NodeCondition>
+							<ToText></ToText>
+					</Subinfo>
+					<Subinfo>
+							<Id>Predicate</Id>
+							<Name>Predicate</Name>
+							<NodeCondition>*-Predicate</NodeCondition>
+							<ToText></ToText>
+					</Subinfo>
+					<Subinfo>
+							<Id>OuterReferences</Id>
+							<Name>OuterReferences</Name>
+							<NodeCondition>*-OuterReferences</NodeCondition>
+							<ToText></ToText>
+					</Subinfo>
+					<Subinfo>
+							<Id>OrderBy</Id>
+							<Name>OrderBy</Name>
+							<NodeCondition>*-OrderBy</NodeCondition>
+							<ToText></ToText>
+					</Subinfo>
+				</Subinfos>
+				<DispAttributeNames>
+					<Item>ScalarString</Item>
+					<Item>ConstValue</Item>
+					<Item>Ascending</Item>
+					<Item>ScanType</Item>
+				</DispAttributeNames>
+
+			</Repl>
+		</SQLPlanCondition>
+	</setting>
+</UserRemoteCheckSetting>

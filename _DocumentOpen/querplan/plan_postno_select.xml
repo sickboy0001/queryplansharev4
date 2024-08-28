@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.564" Build="16.0.1121.4" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan">
+  <BatchSequence>
+    <Batch>
+      <Statements>
+        <StmtSimple StatementCompId="1" StatementEstRows="103.267" StatementId="1" StatementOptmLevel="TRIVIAL" CardinalityEstimationModelVersion="160" StatementSubTreeCost="1.68711" StatementText="select * from postcode where locality_jpname like '江東区%'" StatementType="SELECT" QueryHash="0x27EE2A05E011D274" QueryPlanHash="0xD0668F77B54682C8" RetrievedFromCache="true" StatementSqlHandle="0x0900538E913FD00ED84B6AF28B583F6DA51F0000000000000000000000000000000000000000000000000000" DatabaseContextSettingsId="4" ParentObjectId="0" StatementParameterizationType="0" SecurityPolicyApplied="false">
+          <StatementSetOptions ANSI_NULLS="true" ANSI_PADDING="true" ANSI_WARNINGS="true" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="true" NUMERIC_ROUNDABORT="false" QUOTED_IDENTIFIER="true" />
+          <QueryPlan DegreeOfParallelism="0" NonParallelPlanReason="MaxDOPSetToOne" CachedPlanSize="32" CompileTime="19" CompileCPU="19" CompileMemory="224">
+            <MemoryGrantInfo SerialRequiredMemory="0" SerialDesiredMemory="0" GrantedMemory="0" MaxUsedMemory="0" />
+            <OptimizerHardwareDependentProperties EstimatedAvailableMemoryGrant="288358" EstimatedPagesCached="72089" EstimatedAvailableDegreeOfParallelism="1" MaxCompileMemory="5672704" />
+            <OptimizerStatsUsage>
+              <StatisticsInfo Database="[testdb]" Schema="[dbo]" Table="[postcode]" Statistics="[_WA_Sys_00000009_48CFD27E]" ModificationCount="0" SamplingPercent="56.7569" LastUpdate="2024-08-20T08:17:34.57" />
+            </OptimizerStatsUsage>
+            <WaitStats>
+              <Wait WaitType="ASYNC_NETWORK_IO" WaitTimeMs="4" WaitCount="1" />
+            </WaitStats>
+            <QueryTimeStats CpuTime="45" ElapsedTime="50" />
+            <RelOp AvgRowSize="8195" EstimateCPU="0.137321" EstimateIO="1.54979" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="103.267" EstimatedRowsRead="124695" LogicalOp="Clustered Index Scan" NodeId="0" Parallel="false" PhysicalOp="Clustered Index Scan" EstimatedTotalSubtreeCost="1.68711" TableCardinality="124695">
+              <OutputList>
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="id" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="organization_no" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="oldadrsubno" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="adrsubno" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="prefecture_kname" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="locality_kname" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="city_kname" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="prefecture_jpname" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="locality_jpname" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="city_jpname" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg1" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg2" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg3" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg4" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg5" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg6" />
+              </OutputList>
+              <RunTimeInformation>
+                <RunTimeCountersPerThread Thread="0" ActualRows="86" ActualRowsRead="124695" Batches="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="45" ActualCPUms="45" ActualScans="1" ActualLogicalReads="2098" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" />
+              </RunTimeInformation>
+              <IndexScan Ordered="false" ForcedIndex="false" ForceScan="false" NoExpandHint="false" Storage="RowStore">
+                <DefinedValues>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="id" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="organization_no" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="oldadrsubno" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="adrsubno" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="prefecture_kname" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="locality_kname" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="city_kname" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="prefecture_jpname" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="locality_jpname" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="city_jpname" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg1" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg2" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg3" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg4" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg5" />
+                  </DefinedValue>
+                  <DefinedValue>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="flg6" />
+                  </DefinedValue>
+                </DefinedValues>
+                <Object Database="[testdb]" Schema="[dbo]" Table="[postcode]" Index="[PK__postcode__3213E83F6030DC49]" IndexKind="Clustered" Storage="RowStore" />
+                <Predicate>
+                  <ScalarOperator ScalarString="[testdb].[dbo].[postcode].[locality_jpname] like N'江東区%'">
+                    <Intrinsic FunctionName="like">
+                      <ScalarOperator>
+                        <Identifier>
+                          <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[postcode]" Column="locality_jpname" />
+                        </Identifier>
+                      </ScalarOperator>
+                      <ScalarOperator>
+                        <Const ConstValue="N'江東区%'" />
+                      </ScalarOperator>
+                    </Intrinsic>
+                  </ScalarOperator>
+                </Predicate>
+              </IndexScan>
+            </RelOp>
+          </QueryPlan>
+        </StmtSimple>
+      </Statements>
+    </Batch>
+  </BatchSequence>
+</ShowPlanXML>

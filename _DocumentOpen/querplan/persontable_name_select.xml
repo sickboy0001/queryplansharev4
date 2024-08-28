@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ShowPlanXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.564" Build="16.0.1121.4" xmlns="http://schemas.microsoft.com/sqlserver/2004/07/showplan">
+  <BatchSequence>
+    <Batch>
+      <Statements>
+        <StmtSimple StatementCompId="1" StatementEstRows="1.96078" StatementId="1" StatementOptmLevel="FULL" StatementOptmEarlyAbortReason="GoodEnoughPlanFound" CardinalityEstimationModelVersion="160" StatementSubTreeCost="0.00821463" StatementText="select  id , name , address  from persontable where name like 'テスト999%'" StatementType="SELECT" QueryHash="0xD84E7CDCE21A0BD4" QueryPlanHash="0x8848DC469163C6DE" RetrievedFromCache="true" StatementSqlHandle="0x09004A83688610BDFFBE42A8D35BC8F765E80000000000000000000000000000000000000000000000000000" DatabaseContextSettingsId="4" ParentObjectId="0" StatementParameterizationType="0" SecurityPolicyApplied="false">
+          <StatementSetOptions ANSI_NULLS="true" ANSI_PADDING="true" ANSI_WARNINGS="true" ARITHABORT="true" CONCAT_NULL_YIELDS_NULL="true" NUMERIC_ROUNDABORT="false" QUOTED_IDENTIFIER="true" />
+          <QueryPlan DegreeOfParallelism="0" NonParallelPlanReason="MaxDOPSetToOne" CachedPlanSize="32" CompileTime="44" CompileCPU="28" CompileMemory="256">
+            <MemoryGrantInfo SerialRequiredMemory="0" SerialDesiredMemory="0" GrantedMemory="0" MaxUsedMemory="0" />
+            <OptimizerHardwareDependentProperties EstimatedAvailableMemoryGrant="288358" EstimatedPagesCached="72089" EstimatedAvailableDegreeOfParallelism="1" MaxCompileMemory="4318504" />
+            <OptimizerStatsUsage>
+              <StatisticsInfo Database="[testdb]" Schema="[dbo]" Table="[persontable]" Statistics="[index2]" ModificationCount="0" SamplingPercent="100" LastUpdate="2024-08-22T05:45:18.62" />
+            </OptimizerStatsUsage>
+            <QueryTimeStats CpuTime="1" ElapsedTime="2" />
+            <RelOp AvgRowSize="145" EstimateCPU="8.19608E-06" EstimateIO="0" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="1.96078" LogicalOp="Inner Join" NodeId="0" Parallel="false" PhysicalOp="Nested Loops" EstimatedTotalSubtreeCost="0.00821463">
+              <OutputList>
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="id" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="name" />
+                <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="address" />
+              </OutputList>
+              <RunTimeInformation>
+                <RunTimeCountersPerThread Thread="0" ActualRows="11" Batches="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="2" ActualCPUms="1" />
+              </RunTimeInformation>
+              <NestedLoops Optimized="false">
+                <OuterReferences>
+                  <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="id" />
+                </OuterReferences>
+                <RelOp AvgRowSize="81" EstimateCPU="0.000159157" EstimateIO="0.003125" EstimateRebinds="0" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="1.96078" EstimatedRowsRead="1.96078" LogicalOp="Index Seek" NodeId="1" Parallel="false" PhysicalOp="Index Seek" EstimatedTotalSubtreeCost="0.00328416" TableCardinality="10000">
+                  <OutputList>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="id" />
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="name" />
+                  </OutputList>
+                  <RunTimeInformation>
+                    <RunTimeCountersPerThread Thread="0" ActualRows="11" ActualRowsRead="11" Batches="0" ActualEndOfScans="1" ActualExecutions="1" ActualExecutionMode="Row" ActualElapsedms="0" ActualCPUms="0" ActualScans="1" ActualLogicalReads="3" ActualPhysicalReads="0" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" />
+                  </RunTimeInformation>
+                  <IndexScan Ordered="true" ScanDirection="FORWARD" ForcedIndex="false" ForceSeek="false" ForceScan="false" NoExpandHint="false" Storage="RowStore">
+                    <DefinedValues>
+                      <DefinedValue>
+                        <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="id" />
+                      </DefinedValue>
+                      <DefinedValue>
+                        <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="name" />
+                      </DefinedValue>
+                    </DefinedValues>
+                    <Object Database="[testdb]" Schema="[dbo]" Table="[persontable]" Index="[index2]" IndexKind="NonClustered" Storage="RowStore" />
+                    <SeekPredicates>
+                      <SeekPredicateNew>
+                        <SeekKeys>
+                          <StartRange ScanType="GE">
+                            <RangeColumns>
+                              <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="name" />
+                            </RangeColumns>
+                            <RangeExpressions>
+                              <ScalarOperator ScalarString="'テスト998'">
+                                <Const ConstValue="'テスト998'" />
+                              </ScalarOperator>
+                            </RangeExpressions>
+                          </StartRange>
+                          <EndRange ScanType="LT">
+                            <RangeColumns>
+                              <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="name" />
+                            </RangeColumns>
+                            <RangeExpressions>
+                              <ScalarOperator ScalarString="'テスト99:?'">
+                                <Const ConstValue="'テスト99:?'" />
+                              </ScalarOperator>
+                            </RangeExpressions>
+                          </EndRange>
+                        </SeekKeys>
+                      </SeekPredicateNew>
+                    </SeekPredicates>
+                    <Predicate>
+                      <ScalarOperator ScalarString="[testdb].[dbo].[persontable].[name] like 'テスト999%'">
+                        <Intrinsic FunctionName="like">
+                          <ScalarOperator>
+                            <Identifier>
+                              <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="name" />
+                            </Identifier>
+                          </ScalarOperator>
+                          <ScalarOperator>
+                            <Const ConstValue="'テスト999%'" />
+                          </ScalarOperator>
+                        </Intrinsic>
+                      </ScalarOperator>
+                    </Predicate>
+                  </IndexScan>
+                </RelOp>
+                <RelOp AvgRowSize="71" EstimateCPU="0.0001581" EstimateIO="0.003125" EstimateRebinds="0.960784" EstimateRewinds="0" EstimatedExecutionMode="Row" EstimateRows="1" LogicalOp="Clustered Index Seek" NodeId="3" Parallel="false" PhysicalOp="Clustered Index Seek" EstimatedTotalSubtreeCost="0.00492055" TableCardinality="10000">
+                  <OutputList>
+                    <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="address" />
+                  </OutputList>
+                  <RunTimeInformation>
+                    <RunTimeCountersPerThread Thread="0" ActualRows="11" ActualRowsRead="11" Batches="0" ActualEndOfScans="0" ActualExecutions="11" ActualExecutionMode="Row" ActualElapsedms="1" ActualCPUms="0" ActualScans="0" ActualLogicalReads="22" ActualPhysicalReads="2" ActualReadAheads="0" ActualLobLogicalReads="0" ActualLobPhysicalReads="0" ActualLobReadAheads="0" />
+                  </RunTimeInformation>
+                  <IndexScan Lookup="true" Ordered="true" ScanDirection="FORWARD" ForcedIndex="false" ForceSeek="false" ForceScan="false" NoExpandHint="false" Storage="RowStore">
+                    <DefinedValues>
+                      <DefinedValue>
+                        <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="address" />
+                      </DefinedValue>
+                    </DefinedValues>
+                    <Object Database="[testdb]" Schema="[dbo]" Table="[persontable]" Index="[PK__persontable]" TableReferenceId="-1" IndexKind="Clustered" Storage="RowStore" />
+                    <SeekPredicates>
+                      <SeekPredicateNew>
+                        <SeekKeys>
+                          <Prefix ScanType="EQ">
+                            <RangeColumns>
+                              <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="id" />
+                            </RangeColumns>
+                            <RangeExpressions>
+                              <ScalarOperator ScalarString="[testdb].[dbo].[persontable].[id]">
+                                <Identifier>
+                                  <ColumnReference Database="[testdb]" Schema="[dbo]" Table="[persontable]" Column="id" />
+                                </Identifier>
+                              </ScalarOperator>
+                            </RangeExpressions>
+                          </Prefix>
+                        </SeekKeys>
+                      </SeekPredicateNew>
+                    </SeekPredicates>
+                  </IndexScan>
+                </RelOp>
+              </NestedLoops>
+            </RelOp>
+          </QueryPlan>
+        </StmtSimple>
+      </Statements>
+    </Batch>
+  </BatchSequence>
+</ShowPlanXML>
