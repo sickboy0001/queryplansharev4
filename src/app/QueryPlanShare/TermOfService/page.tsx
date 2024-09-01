@@ -1,6 +1,7 @@
 "use server";
 
-import PageTestInputQPS from "@/components/Organism/QueryPlanShare/PageTestInputQPS";
+import TermOfService from "@/components/Organism/page/TermOfService";
+import PageQPSList from "@/components/Organism/QueryPlanShare/PageQPSList";
 import React from "react";
 
 // import { getUtilUser } from "@/app/actions/user/utilUser";
@@ -16,7 +17,7 @@ const Page = async () => {
   return (
     <>
       {/* <UserProvider user={user as User}> */}
-      <PageTestInputQPS></PageTestInputQPS>
+      <TermOfService></TermOfService>
       {/* </UserProvider> */}
     </>
   );

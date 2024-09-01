@@ -76,37 +76,47 @@ export const SQLPlanCondition = {
         Id: "OutputList",
         Name: "OutputList",
         NodeCondition: "OutputList",
-        ToText: [],
+        ToText: ["ColumnReference--Database,Schema,Table,Alias,Column"],
       },
       {
         Id: "Object",
         Name: "Object",
-        NodeCondition: "*-Object",
-        ToText: [],
+        NodeCondition: "*->Object",
+        // <Object Database="[testdb]" Schema="[sys]" Table="[sysschobjs]" Index="[clst]" Alias="[o]" IndexKind="Clustered" Storage="RowStore" />
+        ToText: ["Database,Schema,Table,Index,Alias,IndexKind"],
       },
       {
         Id: "SeekPredicates",
         Name: "SeekPredicates",
-        NodeCondition: "*-SeekPredicates",
-        ToText: [],
+        NodeCondition: "*->SeekPredicates",
+        // <SeekPredicates>
+        // <SeekPredicateNew>
+        // <SeekKeys>
+        //   <Prefix ScanType="EQ">
+        //     <RangeColumns>
+        //       <ColumnReference Database="[testdb]" Schema="[sys]" Table="[syssingleobjrefs]" Alias="[r]" Column="depid" />
+        ToText: [
+          "ColumnReference--Database,Schema,Table,Alias,Column",
+          "ScalarOperator--ScalarString",
+        ],
       },
       {
         Id: "Predicate",
         Name: "Predicate",
-        NodeCondition: "*-Predicate",
-        ToText: [],
+        NodeCondition: "*->Predicate",
+        ToText: ["ScalarOperator--ScalarString"],
       },
       {
         Id: "OuterReferences",
         Name: "OuterReferences",
-        NodeCondition: "*-OuterReferences",
-        ToText: [],
+        NodeCondition: "*->OuterReferences",
+        ToText: ["ColumnReference--Database,Schema,Table,Alias,Column"],
       },
       {
         Id: "OrderBy",
         Name: "OrderBy",
-        NodeCondition: "*-OrderBy",
-        ToText: [],
+        NodeCondition: "*->OrderBy",
+        ToText: ["ColumnReference--Database,Schema,Table,Alias,Column"],
       },
     ],
     DispAttributeNames: ["ScalarString", "ConstValue", "Ascending", "ScanType"],

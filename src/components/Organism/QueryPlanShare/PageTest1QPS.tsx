@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Textarea } from "../ui/textarea";
-import { Button } from "../ui/button";
+
+import { Button } from "@/components/ui/button";
 
 const PageTest1QPS = () => {
   const [queryPlanXml, setQueryPlanXml] = useState<string>("");

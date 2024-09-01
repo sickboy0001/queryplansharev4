@@ -10,13 +10,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
+} from "@/components/ui/table";
 
 interface propsType {
   xml: string;
 }
 
-const GridDetail = (props: propsType) => {
+const GridStmtSimple = (props: propsType) => {
   const { xml } = props;
   const [stmtSimples, setStmtSimples] = useState<HTMLCollection | null>(null);
 
@@ -72,4 +72,4 @@ const GridDetail = (props: propsType) => {
   );
 };
 
-export default GridDetail;
+export default GridStmtSimple;

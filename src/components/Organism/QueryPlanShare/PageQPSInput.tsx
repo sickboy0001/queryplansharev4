@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Textarea } from "../ui/textarea";
-import { Button } from "../ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 import { RegistQpsQueryPlans } from "@/app/actions/Qps/QueryPlans";
 import { useRouter } from "next/navigation";
 import { RegistQpsQueryPlansLinkedUrl } from "@/app/actions/Qps/QueryPlansLinkedUrl";

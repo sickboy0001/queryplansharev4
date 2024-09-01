@@ -1,5 +1,5 @@
 "use server";
-import PageQPSInput from "@/components/QueryPlanShare/PageQPSInput";
+import PageQPSInput from "@/components/Organism/QueryPlanShare/PageQPSInput";
 import React from "react";
 
 const Page = async () => {

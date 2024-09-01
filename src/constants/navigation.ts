@@ -1,8 +1,11 @@
-export const MENULOGIN = [
-  { displayName: `TestSample`, url: `/QueryPlanShare/test` },
-  { displayName: `TestInput`, url: `/QueryPlanShare/testInput` },
-  { displayName: `List`, url: `/QueryPlanShare/list` },
+export const MENUGUEST = [
+  { displayName: `Top`, url: `/QueryPlanShare/Top` },
   { displayName: `Input`, url: `/QueryPlanShare/input` },
+  { displayName: `List`, url: `/QueryPlanShare/list` },
+];
+
+export const MENUADMIN = [
+  // { displayName: `List`, url: `/QueryPlanShare/list` }
 ];
 
 export const MENULOGINSUBMENU = [
@@ -18,6 +21,10 @@ export const MENUADMINSUBMENU = [
   // { displayName: `[test]csv-import`, url: `/importdata/selectfile` },
   // { displayName: `[test]API-TextAnalyse`, url: `/test/textanalyse` },
   // { displayName: `[test]Supabase Storage `, url: `/test/storagetest` },
+];
+
+export const FOOTER = [
+  { displayName: `TermOfService`, url: `/QueryPlanShare/TermOfService` },
 ];
 
 // <li className="nav-item">

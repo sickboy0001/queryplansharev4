@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import CodeBlock from "../Atomic/CodeBlock";
+import CodeBlock from "@/components/Atomic/CodeBlock";
 
 interface propsType {
   xml: string;

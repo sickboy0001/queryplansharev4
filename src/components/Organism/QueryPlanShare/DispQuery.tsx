@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { TypeQpsQueryPlan } from "@/app/types/QPS";
-import CodeBlock from "../Atomic/CodeBlock";
+import CodeBlock from "@/components/Atomic/CodeBlock";
 
 interface propsType {
   // qpsQueryPlan: TypeQpsQueryPlan | null | undefined;

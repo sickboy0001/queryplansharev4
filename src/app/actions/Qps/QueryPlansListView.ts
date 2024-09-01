@@ -7,7 +7,8 @@ export async function selectAllQpsQueryPlansListView() {
   const supabase = createClient();
   const { data: res, error } = await supabase
     .from("qps_queryplans_list_view")
-    .select("*");
+    .select("*")
+    .order("update_at", { ascending: false });
   if (error) {
     console.log(error);
     // throw new Error(error.message);

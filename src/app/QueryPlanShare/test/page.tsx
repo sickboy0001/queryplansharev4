@@ -1,5 +1,6 @@
 "use server";
-import PageTest1QPS from "@/components/QueryPlanShare/PageTest1QPS";
+
+import PageTest1QPS from "@/components/Organism/QueryPlanShare/PageTest1QPS";
 import React from "react";
 
 // import { getUtilUser } from "@/app/actions/user/utilUser";

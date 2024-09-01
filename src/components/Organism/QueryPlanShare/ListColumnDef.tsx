@@ -5,8 +5,7 @@ import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TypeQpsQueryPlan } from "@/app/types/QPS";
 import { format } from "date-fns";
-import { ImageIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
+
 // import { format } from "date-fns";
 
 export const columns: ColumnDef<TypeQpsQueryPlan>[] = [

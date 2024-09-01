@@ -1,12 +1,7 @@
 "use server";
 import { selectQpsQueryPlansLinkedUrl } from "@/app/actions/Qps/QueryPlansLinkedUrl";
-import PageQPSView from "@/components/QueryPlanShare/PageQPSView";
+import PageQPSView from "@/components/Organism/QueryPlanShare/PageQPSView";
 import React from "react";
-
-// import { getUtilUser } from "@/app/actions/user/utilUser";
-// import { UserProvider } from "@/components/user/UserContext";
-// import { User } from "@/app/types/user";
-// import PageList from "@/components/zstpost/pageTitles/PageList";
 
 interface propsType {
   searchParams:

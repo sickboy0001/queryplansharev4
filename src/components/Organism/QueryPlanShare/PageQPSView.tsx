@@ -11,9 +11,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../ui/accordion";
+} from "@/components/ui/accordion";
 import { getQueryFromXml } from "@/service/queryplanxml/list";
-import GridDetail from "./GridDetail";
+import GridStmtSimple from "./GridStmtSimple";
 import GridRepl from "./GridRepl";
 
 interface propsType {
@@ -62,7 +62,7 @@ const PageQPSView = (props: propsType) => {
           <AccordionContent>
             <HtmlQueryPlan
               xml={qpsQueryPlan?.xml || ""}
-              qpsQueryPlan={qpsQueryPlan}
+              // qpsQueryPlan={qpsQueryPlan}
             ></HtmlQueryPlan>
           </AccordionContent>
         </AccordionItem>
@@ -71,7 +71,7 @@ const PageQPSView = (props: propsType) => {
         <AccordionItem value="DetailGrid">
           <AccordionTrigger>Detail</AccordionTrigger>
           <AccordionContent>
-            <GridDetail xml={qpsQueryPlan?.xml || ""}></GridDetail>
+            <GridStmtSimple xml={qpsQueryPlan?.xml || ""}></GridStmtSimple>
           </AccordionContent>
         </AccordionItem>
       </Accordion>

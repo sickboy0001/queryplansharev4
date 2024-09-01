@@ -1,22 +1,12 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
-import { TypeQpsQueryPlan } from "@/app/types/QPS";
-import { selectQpsQueryPlans } from "@/app/actions/Qps/QueryPlans";
-import HtmlQueryPlan from "./HtmlQP";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
-interface propsType {
-  qpsQueryPlan: TypeQpsQueryPlan | null | undefined;
-  xml: string | null | undefined;
-}
-
-const HtmlQP = (props: propsType) => {
-  const { qpsQueryPlan, xml } = props;
+const PageTestInputQPS = () => {
+  const [queryPlanXml, setQueryPlanXml] = useState<string>("");
   const [QP, setQP] = useState<any>(null);
-  //   const [qpsQueryPlan, setQpsQueryPlan] = useState<
-  //     TypeQpsQueryPlan | undefined
-  //   >(undefined);
-  const [query, setQuery] = useState<string | null>("");
+
   useEffect(() => {
     // スクリプトを動的に読み込む
     const loadScript = () => {
@@ -42,7 +32,6 @@ const HtmlQP = (props: propsType) => {
     loadStylesheet();
     loadScript()
       .then((QP) => {
-        console.log(QP);
         setQP(QP);
       })
       .catch((error) => {
@@ -62,30 +51,37 @@ const HtmlQP = (props: propsType) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (xml !== undefined && xml !== null) {
-      console.log("start useEffect");
-      const container = document.getElementById("container");
-      if (container && QP && typeof QP.showPlan === "function") {
-        QP.showPlan(container, xml);
-      } else {
-        console.error("Container not found or QP is undefined or invalid.");
-      }
+  const handleClick = () => {
+    console.log("handleClick:start");
+    const container = document.getElementById("container");
+    console.log(QP);
+
+    if (typeof QP !== "undefined") {
+      QP.showPlan(container, queryPlanXml);
     }
-  }, [xml, QP]);
+  };
+  // テキストエリアの値が変更されたときに状態を更新
+  const handleTextareaChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setQueryPlanXml(event.target.value);
+  };
 
   return (
     <div className="grid w-full gap-2">
-      {/* <div>{query ? <pre>{query}</pre> : ""}</div> */}
+      <Textarea
+        rows={19}
+        cols={60}
+        placeholder="Type your message here."
+        value={queryPlanXml} // テキストエリアの値を状態で管理
+        onChange={handleTextareaChange} // 値が変更されたときに状態を更新
+      />
+
+      <Button onClick={handleClick}>Send message</Button>
+
       <div id="container"></div>
-      {/* {qpsQueryPlan ? (
-        <HtmlQueryPlan xml={qpsQueryPlan.xml}></HtmlQueryPlan>
-      ) : (
-        ""
-      )} */}
-      {/* <div>{qpsQueryPlan ? <pre>{qpsQueryPlan.xml}</pre> : ""}</div> */}
     </div>
   );
 };
 
-export default HtmlQP;
+export default PageTestInputQPS;
