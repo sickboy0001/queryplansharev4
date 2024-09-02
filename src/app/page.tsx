@@ -1,12 +1,14 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+"use server";
 
-export default function Home() {
+import Start from "@/components/Organism/page/Start";
+import React from "react";
+
+const Page = async () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        <Button>クリック！</Button>
-      </div>
-    </main>
+    <>
+      <Start></Start>
+    </>
   );
-}
+};
+
+export default Page;

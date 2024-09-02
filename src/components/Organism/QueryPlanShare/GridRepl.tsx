@@ -176,11 +176,11 @@ const GridRepl = (props: propsType) => {
                             : ""}
 
                           {each[attributeName]}
-                          {attributeName === "PhysicalOp" ? (
+                          {/* {attributeName === "PhysicalOp" ? (
                             <Switch id="airplane-mode" />
                           ) : (
                             ""
-                          )}
+                          )} */}
                         </TableCell>
                       );
                     }

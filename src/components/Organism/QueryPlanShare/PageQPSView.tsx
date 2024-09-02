@@ -15,6 +15,8 @@ import {
 import { getQueryFromXml } from "@/service/queryplanxml/list";
 import GridStmtSimple from "./GridStmtSimple";
 import GridRepl from "./GridRepl";
+import { Input } from "@/components/ui/input";
+import TextUrl from "./TextUrl";
 
 interface propsType {
   id: number;
@@ -40,6 +42,14 @@ const PageQPSView = (props: propsType) => {
 
   return (
     <div className="grid w-full gap-2">
+      <Accordion type="single" defaultValue="item-TextUrl" collapsible>
+        <AccordionItem value="item-TextUrl">
+          <AccordionTrigger>Url</AccordionTrigger>
+          <AccordionContent>
+            <TextUrl></TextUrl>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger>Xml</AccordionTrigger>
