@@ -99,8 +99,10 @@ const GridDetail = (props: propsType) => {
           {data.map((each, index) => (
             <>
               <TableRow key={index}>
-                <TableCell>{each.title}</TableCell>
-                <TableCell>{getDetailCell(each.title, each.xml)}</TableCell>
+                <TableCell className="p-1">{each.title}</TableCell>
+                <TableCell className="p-1">
+                  {getDetailCell(each.title, each.xml)}
+                </TableCell>
               </TableRow>
               <TableRow key={index}></TableRow>
             </>
@@ -109,7 +111,6 @@ const GridDetail = (props: propsType) => {
       </Table>
     </>
   );
-  // return data.map((each: keyValue) => each.title).join(",");
 };
 
 export default GridDetail;

@@ -14,6 +14,7 @@ import { keyValue } from "@/types/common";
 import GridDetail from "./GridDetail";
 import { Collapsible } from "@/components/ui/collapsible";
 import { Switch } from "@/components/ui/switch";
+import GridReplRows from "./GridReplRows";
 
 interface propsType {
   xml: string;
@@ -153,53 +154,22 @@ const GridRepl = (props: propsType) => {
     <>
       <Table>
         <TableHeader>
-          <TableRow>
+          <TableRow className="bg-gray-100">
             {SQLPlanCondition.Disp.GridReplAttributes.map((element, key) => (
-              <TableHead key={key}>{element}</TableHead>
+              <TableHead key={key} className="font-bold">
+                {element.displayname ? element.displayname : element.name}
+              </TableHead>
             ))}
           </TableRow>
         </TableHeader>
         {stmtSimples ? (
           <TableBody>
             {Array.from(analyseRelops).map((each, index) => (
-              <>
-                <TableRow key={index}>
-                  {SQLPlanCondition.Disp.GridReplAttributes.map(
-                    (attributeName: string) => {
-                      return (
-                        <TableCell
-                          key={attributeName}
-                          className={`{attributeName === "PhysicalOp"?"tabular-nums":""}`}
-                        >
-                          {attributeName === "PhysicalOp"
-                            ? "--".repeat(each["level"])
-                            : ""}
-
-                          {each[attributeName]}
-                          {/* {attributeName === "PhysicalOp" ? (
-                            <Switch id="airplane-mode" />
-                          ) : (
-                            ""
-                          )} */}
-                        </TableCell>
-                      );
-                    }
-                  )}
-                </TableRow>
-                <TableRow key={"GridDetail-row-" + index.toString()}>
-                  <TableCell
-                    colSpan={SQLPlanCondition.Disp.GridReplAttributes.length}
-                  >
-                    {detailDatas.hasOwnProperty(getNodeId(each)) ? (
-                      <GridDetail
-                        data={detailDatas[getNodeId(each)]}
-                      ></GridDetail>
-                    ) : (
-                      "nodate"
-                    )}
-                  </TableCell>
-                </TableRow>
-              </>
+              <GridReplRows
+                detailData={detailDatas[getNodeId(each)]}
+                rowData={each}
+                key={index}
+              ></GridReplRows>
             ))}
           </TableBody>
         ) : (

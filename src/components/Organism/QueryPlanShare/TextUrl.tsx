@@ -14,11 +14,22 @@ const TextUrl = () => {
     }
   }, []);
 
+  const handleCopy = () => {
+    navigator.clipboard
+      .writeText(fullUrl)
+      .then(() => {
+        alert("クリップボードにコピーしました！");
+      })
+      .catch((err) => {
+        console.error("コピーに失敗しました: ", err);
+      });
+  };
+
   return (
     <>
       <div className="flex px-4 py-2">
         <Input className="mx-1" id="fullUrl" value={fullUrl} readOnly />
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" onClick={handleCopy}>
           <CopyIcon className="h-4 w-4" />
         </Button>
       </div>

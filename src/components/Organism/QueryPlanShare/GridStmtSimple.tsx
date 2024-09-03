@@ -42,10 +42,12 @@ const GridStmtSimple = (props: propsType) => {
     <>
       <Table>
         <TableHeader>
-          <TableRow>
+          <TableRow className="bg-gray-100">
             {SQLPlanCondition.Disp.GridStatementsAttributes.map(
               (element, key) => (
-                <TableHead key={key}>{element}</TableHead>
+                <TableHead key={key} className="font-bold">
+                  {element.displayname ? element.displayname : element.name}
+                </TableHead>
               )
             )}
           </TableRow>
@@ -56,8 +58,8 @@ const GridStmtSimple = (props: propsType) => {
               <TableRow key={index}>
                 {SQLPlanCondition.Disp.GridStatementsAttributes.map(
                   (element) => (
-                    <TableCell key={element}>
-                      {each.getAttribute(element)}
+                    <TableCell key={element.name}>
+                      {each.getAttribute(element.name)}
                     </TableCell>
                   )
                 )}

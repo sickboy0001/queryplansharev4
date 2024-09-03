@@ -1,7 +1,7 @@
 export const MENUGUEST = [
   { displayName: `Top`, url: `/QueryPlanShare/Top` },
   { displayName: `Input`, url: `/QueryPlanShare/input` },
-  { displayName: `List`, url: `/QueryPlanShare/list` },
+  // { displayName: `List`, url: `/QueryPlanShare/list` },
 ];
 
 export const MENUADMIN = [

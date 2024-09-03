@@ -1,19 +1,23 @@
 export const SQLPlanCondition = {
   Disp: {
     GridStatementsAttributes: [
-      "StatementType",
-      "StatementSubTreeCost",
-      "StatementEstRows",
-      "StatementOptmEarlyAbortReason",
+      { name: "StatementType", displayname: "" },
+      { name: "StatementSubTreeCost", displayname: "" },
+      { name: "StatementEstRows", displayname: "" },
+      { name: "StatementOptmEarlyAbortReason", displayname: "" },
     ],
     GridReplAttributes: [
-      "PhysicalOp",
-      "LogicalOp",
-      "EstimateRows",
-      "EstimateIO",
-      "EstimateCPU",
-      "AvgRowSize",
-      "EstimatedTotalSubtreeCost",
+      { name: "PhysicalOp", displayname: "" },
+      { name: "EstimateRows", displayname: "" },
+      { name: "EstimateIO", displayname: "" },
+      { name: "EstimateCPU", displayname: "" },
+      { name: "AvgRowSize", displayname: "" },
+      { name: "EstimatedTotalSubtreeCost", displayname: "SubtreeCost" },
+      { name: "Parallel", displayname: "" },
+      { name: "EstimateRebinds", displayname: "" },
+      { name: "EstimateRewinds", displayname: "" },
+      // "EstimateRebinds",
+      // "EstimateRewinds",
     ],
   },
   Statements: {
@@ -83,7 +87,7 @@ export const SQLPlanCondition = {
         Name: "Object",
         NodeCondition: "*->Object",
         // <Object Database="[testdb]" Schema="[sys]" Table="[sysschobjs]" Index="[clst]" Alias="[o]" IndexKind="Clustered" Storage="RowStore" />
-        ToText: ["Database,Schema,Table,Index,Alias,IndexKind"],
+        ToText: ["Database,Schema,Table,Index,Alias,IndexKind,Storage"],
       },
       {
         Id: "SeekPredicates",
