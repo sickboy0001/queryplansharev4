@@ -22,10 +22,13 @@ export default function Navigation() {
         <span className="ml-3 text-xl">QueryPlanShare</span>
       </a>
       <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <ul className="flex flex-col lg:flex-row list-none lg:ml-auto items-center">
+        <ul className="flex flex-row list-none lg:ml-auto items-center">
           {MENUGUEST.map((each, key) => (
-            <li className="nav-item" key={key}>
-              <Link className="mr-5 hover:text-gray-900" href={each.url}>
+            <li className="nav-item " key={key}>
+              <Link
+                className="mr-5 text-base hover:text-gray-900"
+                href={each.url}
+              >
                 {each.displayName}
               </Link>
             </li>

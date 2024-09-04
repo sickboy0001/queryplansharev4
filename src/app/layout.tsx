@@ -52,7 +52,7 @@ export default function RootLayout({
               {FOOTER.map((each, key) => (
                 <Link
                   key={key}
-                  className=" hover:text-gray-900"
+                  className=" hover:text-gray-600 text-sm"
                   href={each.url}
                 >
                   {each.displayName}
