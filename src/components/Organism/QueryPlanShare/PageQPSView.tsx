@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/accordion";
 import { getQueryFromXml } from "@/service/queryplanxml/list";
 import GridStmtSimple from "./GridStmtSimple";
-import GridRepl from "./GridRepl";
+import GridRelOp from "./GridRelOp";
 import { Input } from "@/components/ui/input";
 import TextUrl from "./TextUrl";
 
@@ -89,7 +89,7 @@ const PageQPSView = (props: propsType) => {
         <AccordionItem value="ReplGrid">
           <AccordionTrigger>Repl</AccordionTrigger>
           <AccordionContent>
-            <GridRepl xml={qpsQueryPlan?.xml || ""}></GridRepl>
+            <GridRelOp xml={qpsQueryPlan?.xml || ""}></GridRelOp>
           </AccordionContent>
         </AccordionItem>
       </Accordion>

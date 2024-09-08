@@ -32,7 +32,7 @@ interface propsType {
   detailData: any;
 }
 
-const GridReplRows = (props: propsType) => {
+const GridRelOpRows = (props: propsType) => {
   const { rowData, key, detailData } = props;
   const [isRowVisible, setIsRowVisible] = useState(false);
 
@@ -93,4 +93,4 @@ const GridReplRows = (props: propsType) => {
   );
 };
 
-export default GridReplRows;
+export default GridRelOpRows;

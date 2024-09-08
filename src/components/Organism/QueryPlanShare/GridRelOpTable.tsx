@@ -14,10 +14,10 @@ import { keyValue } from "@/types/common";
 import GridDetail from "./GridDetail";
 import { Collapsible } from "@/components/ui/collapsible";
 import { Switch } from "@/components/ui/switch";
-import GridReplRows from "./GridReplRows";
+import GridRelOpRows from "./GridRelOpRows";
 
 interface propsType {
-  xml: string;
+  stmtSimple: Element;
 }
 
 const isElement = (obj: any): obj is Element => {
@@ -25,14 +25,6 @@ const isElement = (obj: any): obj is Element => {
 };
 
 const getNodeId = (relop: Element | keyValue): string => {
-  // if (isElement(relop)) {
-  //   // relopがElementの場合
-  //   const result = relop.getAttribute("NodeId");
-  //   return result !== null ? result.toString() : "0";
-  // } else {
-  //   const result = relop["NodeId"];
-  //   return result !== null ? result.toString() : "0";
-  // }
   const result = isElement(relop)
     ? relop.getAttribute("NodeId")
     : relop["NodeId"];
@@ -77,7 +69,7 @@ const analyseReplSubinfo = (relop: Element, detailData: keyValue[]) => {
       }
 
       subinfos.map((subinfo) => {
-        console.log("subinfo:", subinfo);
+        // console.log("subinfo:", subinfo);
         detailData.push({
           title: subinfo.tagName,
           xml: subinfo,
@@ -92,10 +84,8 @@ const analyseChildren = (
   children: Element[],
   Analyseds: keyValue[],
   detailDatas: keyValue
-  // Analyseds:
 ) => {
   Array.from(children).map((child) => {
-    // const queryPlan = each.getElementsByTagName(tagqueryplan)[0];
     const relops = Array.from(child.children).filter(
       (each) => each.tagName === "RelOp"
     );
@@ -103,7 +93,7 @@ const analyseChildren = (
     Array.from(relops).map((relop) => {
       const analysedrelop: keyValue = [];
 
-      let log = "level:" + level.toString();
+      // let log = "level:" + level.toString();
       analysedrelop["level"] = level;
 
       const nodeid: string = getNodeId(relop);
@@ -112,7 +102,7 @@ const analyseChildren = (
       analyseReplSubinfo(relop, detailDatas[nodeid]);
 
       SQLPlanCondition.Repl.Attributes.map((attributesName) => {
-        log = log + attributesName + ":" + relop.getAttribute(attributesName);
+        // log = log + attributesName + ":" + relop.getAttribute(attributesName);
         analysedrelop[attributesName] = relop.getAttribute(attributesName);
       });
       Analyseds.push(analysedrelop);
@@ -125,30 +115,27 @@ const analyseChildren = (
   });
 };
 
-const GridRepl = (props: propsType) => {
-  const { xml } = props;
-  const [stmtSimples, setStmtSimples] = useState<Element[] | null>(null);
+const GridRelOpTable = (props: propsType) => {
+  const { stmtSimple } = props;
   const [analyseRelops, setAnalyseRelops] = useState<keyValue[]>([]);
   const [detailDatas, setDetailDatas] = useState<keyValue>({});
-  // // const analyseRelop:AnalyseRelop = {};
-  // const analyseRelops: AnalyseRelop[] = [];
+
   useEffect(() => {
-    const parser = new DOMParser();
-    const dom = parser.parseFromString(xml, "text/xml");
-    const thisstmtSimples = Array.from(dom.getElementsByTagName("StmtSimple"));
+    const thisanalyseRelops: keyValue[] = [];
+    const thisdetailDatas: keyValue[] = [];
 
-    thisstmtSimples.forEach((each) => {
-      const analyseRelops: keyValue[] = [];
-      const thisdetailDatas: keyValue[] = [];
-
-      const children = each.getElementsByTagName(SQLPlanCondition.QueryPlan);
-      analyseChildren(0, Array.from(children), analyseRelops, thisdetailDatas);
-      setAnalyseRelops(analyseRelops);
-      setDetailDatas(thisdetailDatas);
-      // console.log(thisanalyseRelops);
-    });
-    setStmtSimples(thisstmtSimples);
-  }, [xml]);
+    const children = stmtSimple.getElementsByTagName(
+      SQLPlanCondition.QueryPlan
+    );
+    analyseChildren(
+      0,
+      Array.from(children),
+      thisanalyseRelops,
+      thisdetailDatas
+    );
+    setAnalyseRelops(thisanalyseRelops);
+    setDetailDatas(thisdetailDatas);
+  }, [stmtSimple]);
 
   return (
     <>
@@ -162,22 +149,18 @@ const GridRepl = (props: propsType) => {
             ))}
           </TableRow>
         </TableHeader>
-        {stmtSimples ? (
-          <TableBody>
-            {Array.from(analyseRelops).map((each, index) => (
-              <GridReplRows
-                detailData={detailDatas[getNodeId(each)]}
-                rowData={each}
-                key={index}
-              ></GridReplRows>
-            ))}
-          </TableBody>
-        ) : (
-          ""
-        )}
+        <TableBody>
+          {Array.from(analyseRelops).map((each, index) => (
+            <GridRelOpRows
+              detailData={detailDatas[getNodeId(each)]}
+              rowData={each}
+              key={index}
+            ></GridRelOpRows>
+          ))}
+        </TableBody>
       </Table>
     </>
   );
 };
 
-export default GridRepl;
+export default GridRelOpTable;

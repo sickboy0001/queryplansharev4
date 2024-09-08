@@ -94,21 +94,23 @@ const GridDetail = (props: propsType) => {
 
   return (
     <>
-      <Table>
-        <TableBody>
-          {data.map((each, index) => (
-            <>
-              <TableRow key={index}>
-                <TableCell className="p-1">{each.title}</TableCell>
-                <TableCell className="p-1">
-                  {getDetailCell(each.title, each.xml)}
-                </TableCell>
-              </TableRow>
-              <TableRow key={index}></TableRow>
-            </>
-          ))}
-        </TableBody>
-      </Table>
+      <div className="px-10">
+        <Table>
+          <TableBody>
+            {data.map((each, index) => (
+              <>
+                <TableRow key={index}>
+                  <TableCell className="p-1 w-1/5">{each.title}</TableCell>
+                  <TableCell className="p-1 w-3/5">
+                    {getDetailCell(each.title, each.xml)}
+                  </TableCell>
+                </TableRow>
+                <TableRow key={index}></TableRow>
+              </>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </>
   );
 };
