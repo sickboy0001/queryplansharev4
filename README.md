@@ -33,8 +33,9 @@ SQLServer(およびSQLServerManagmentStudio（以下SSMS）)上で提供され�
     - [SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
 
 ## デプロイ
-- Vercel（予定）
+- Vercel
 - Supabase
+- [QueryPlanShare](https://queryplansharev4.vercel.app/QueryPlanShare/Top)
 
 
 ## その他
