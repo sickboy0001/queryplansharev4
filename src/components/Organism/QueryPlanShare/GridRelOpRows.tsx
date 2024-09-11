@@ -2,29 +2,9 @@
 
 import { SQLPlanCondition } from "@/constants/queryplanxml";
 import React, { useEffect, useState } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { keyValue } from "@/types/common";
+import { TableCell, TableRow } from "@/components/ui/table";
 import GridDetail from "./GridDetail";
-import { Collapsible } from "@/components/ui/collapsible";
 import { Switch } from "@/components/ui/switch";
-
-const isElement = (obj: any): obj is Element => {
-  return obj instanceof Element;
-};
-
-const getNodeId = (relop: Element | keyValue): string => {
-  const result = isElement(relop)
-    ? relop.getAttribute("NodeId")
-    : relop["NodeId"];
-  return result !== null ? result.toString() : "0";
-};
 
 interface propsType {
   rowData: any;

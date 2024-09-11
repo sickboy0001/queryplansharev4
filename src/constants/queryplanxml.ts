@@ -16,8 +16,6 @@ export const SQLPlanCondition = {
       { name: "Parallel", displayname: "" },
       { name: "EstimateRebinds", displayname: "E-Rebinds" },
       { name: "EstimateRewinds", displayname: "E-Rewinds" },
-      // "EstimateRebinds",
-      // "EstimateRewinds",
     ],
   },
   Statements: {
@@ -46,6 +44,46 @@ export const SQLPlanCondition = {
     ],
   },
   QueryPlan: "QueryPlan",
+  QueryPlanInfos: [
+    {
+      NodeName: "MemoryGrantInfo",
+      Attributes: [
+        "SerialRequiredMemory",
+        "SerialDesiredMemory",
+        "GrantedMemory",
+        "MaxUsedMemory",
+      ],
+    },
+    {
+      NodeName: "OptimizerHardwareDependentProperties",
+      Attributes: [
+        "EstimatedAvailableMemoryGrant",
+        "EstimatedPagesCached",
+        "EstimatedAvailableDegreeOfParallelism",
+        "MaxCompileMemory",
+      ],
+    },
+    {
+      NodeName: "OptimizerStatsUsage",
+      ListNodeName: "StatisticsInfo",
+      Attributes: [
+        "Table",
+        "Statistics",
+        "ModificationCount",
+        "SamplingPercent",
+        "LastUpdate",
+      ],
+    },
+    {
+      NodeName: "WaitStats",
+      ListNodeName: "Wait",
+      Attributes: ["WaitType", "WaitTimeMs", "WaitCount"],
+    },
+    {
+      NodeName: "QueryTimeStats",
+      Attributes: ["CpuTime", "ElapsedTime"],
+    },
+  ],
   Repl: {
     Condition: {
       Attribute: "NodeId",

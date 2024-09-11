@@ -17,6 +17,7 @@ import GridStmtSimple from "./GridStmtSimple";
 import GridRelOp from "./GridRelOp";
 import { Input } from "@/components/ui/input";
 import TextUrl from "./TextUrl";
+import GridSubinfos from "./GridSubinfos";
 
 interface propsType {
   id: number;
@@ -85,6 +86,15 @@ const PageQPSView = (props: propsType) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
+      <Accordion type="single" defaultValue="Subinfo" collapsible>
+        <AccordionItem value="Subinfo">
+          <AccordionTrigger>Subinfo</AccordionTrigger>
+          <AccordionContent>
+            <GridSubinfos xml={qpsQueryPlan?.xml || ""}></GridSubinfos>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+
       <Accordion type="single" defaultValue="ReplGrid" collapsible>
         <AccordionItem value="ReplGrid">
           <AccordionTrigger>Repl</AccordionTrigger>

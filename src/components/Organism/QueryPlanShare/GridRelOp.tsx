@@ -17,7 +17,6 @@ const GridRelOp = (props: propsType) => {
       const thisstmtSimples = Array.from(
         dom.getElementsByTagName("StmtSimple")
       );
-      // console.log(thisstmtSimples);
       setStmtSimples(thisstmtSimples);
     }
   }, [xml]);
