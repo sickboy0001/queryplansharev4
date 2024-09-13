@@ -141,9 +141,9 @@ const GridRelOpTable = (props: propsType) => {
     <>
       <Table>
         <TableHeader>
-          <TableRow className="bg-gray-100">
+          <TableRow className="bg-gray-100 border-b">
             {SQLPlanCondition.Disp.GridReplAttributes.map((element, key) => (
-              <TableHead key={key} className="font-bold">
+              <TableHead key={key} className="font-bold border">
                 {element.displayname ? element.displayname : element.name}
               </TableHead>
             ))}

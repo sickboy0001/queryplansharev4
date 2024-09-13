@@ -27,7 +27,7 @@ const GridRelOpRows = (props: propsType) => {
           return (
             <TableCell
               key={attribute.name}
-              className={` {attributeName === "PhysicalOp"?"tabular-nums":""}`}
+              className={` {attributeName === "PhysicalOp"?"tabular-nums":""} border`}
             >
               <div className="flex items-center">
                 {attribute.name === "PhysicalOp" ? (

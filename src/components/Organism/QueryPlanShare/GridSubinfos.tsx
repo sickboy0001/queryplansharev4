@@ -2,25 +2,56 @@
 
 import { SQLPlanCondition } from "@/constants/queryplanxml";
 import React, { useEffect, useState } from "react";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { keyValue } from "@/types/common";
-import CodeBlock from "@/components/Atomic/CodeBlock";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
 interface propsType {
   xml: string;
 }
 
+const getRowAttributes = (info: Element, Attributes: string[]) => {
+  //Attributeの各列でのMap
+  const cells: string[] = [];
+  Attributes?.map((Attribute) => {
+    const attributeValue = info.getAttribute(Attribute);
+    cells.push(attributeValue as string);
+  });
+  return cells;
+};
+
+const getSubInfotable = (
+  subinfos: Element[],
+  Attributes: string[],
+  listNodeName: string
+) => {
+  let SubInfotable: any[] = [];
+  //Header分の追加
+  let Header = Attributes;
+  SubInfotable.push(Header);
+  //Attributeから情報の取得
+
+  let rows: string[][] = [];
+  //Data分の追加
+
+  console.log("listNodeName", listNodeName);
+
+  let infos = !listNodeName
+    ? subinfos
+    : subinfos.flatMap((info) =>
+        Array.from(info.getElementsByTagName(listNodeName))
+      ); // 指定されたノード名に一致する要素を取得
+  Array.from(infos).forEach((info) => {
+    // console.log("cells", cells);
+    const cells = getRowAttributes(info, Attributes);
+    SubInfotable.push(cells);
+  });
+
+  // SubInfotable.push(rows);
+  console.log("SubInfotable", SubInfotable);
+  return SubInfotable;
+};
+
 const GridSubinfos = (props: propsType) => {
   const { xml } = props;
-  const [stmtSimples, setStmtSimples] = useState<HTMLCollection | null>(null);
   const [subinfos, setSubinfos] = useState<any[] | null>([]);
 
   useEffect(() => {
@@ -34,58 +65,27 @@ const GridSubinfos = (props: propsType) => {
       SQLPlanCondition.QueryPlanInfos.map((QueryPlanInfo) => {
         let subInfoArray: any[] = [];
         subInfoArray.push(QueryPlanInfo.NodeName);
+
+        //分析対象の取得
         const subinfos = Array.from(queryPlan.children).filter(
           (each) => each.tagName === QueryPlanInfo.NodeName
         );
 
-        let AttributionTable: any[] = [];
+        const thisgetAttributeTable = getSubInfotable(
+          subinfos,
+          QueryPlanInfo.Attributes,
+          QueryPlanInfo.ListNodeName || ""
+        );
 
-        let Header = QueryPlanInfo.Attributes;
-        AttributionTable.push(Header);
-
-        let rows: string[][] = [];
-
-        QueryPlanInfo.Attributes?.map((Attribute) => {
-          let cells: string[] = [];
-          if (QueryPlanInfo.ListNodeName) {
-            Array.from(subinfos).forEach((subinfo) => {
-              const NodeNames = Array.from(subinfos).filter(
-                (each) => each.tagName === QueryPlanInfo.NodeName
-              );
-              const ListNodeNames = Array.from(NodeNames).filter(
-                (each) => each.tagName === QueryPlanInfo.ListNodeName
-              );
-
-              Array.from(ListNodeNames).forEach((subinfo) => {
-                const attributeValue = subinfo.getAttribute(Attribute);
-                cells.push(attributeValue as string);
-              });
-            });
-            rows.push(cells);
-            console.log("cells", cells);
-          } else {
-            Array.from(subinfos).forEach((subinfo) => {
-              const attributeValue = subinfo.getAttribute(Attribute);
-              cells.push(attributeValue as string);
-            });
-            rows.push(cells);
-            // console.log("cells", cells);
-          }
-        });
-        AttributionTable.push(rows);
-        subInfoArray.push(AttributionTable);
+        subInfoArray.push(thisgetAttributeTable);
         thisSubinfos.push(subInfoArray);
       });
     });
     setSubinfos(thisSubinfos);
-    // console.log("thisSubinfos:", thisSubinfos);
-    // setSubinfos;
   }, [xml]);
 
   return (
     <>
-      {/* {subinfos}- {subinfos.length} */}
-      {/* <CodeBlock code={subinfos} language="sql" /> */}
       <Table>
         <TableBody>
           {subinfos != null
@@ -93,14 +93,14 @@ const GridSubinfos = (props: propsType) => {
                 <TableRow>
                   <TableCell>{subinfoArray[0]}</TableCell>
                   <TableCell>
-                    <Table>
+                    <Table className=" border border-gray-300">
                       <TableBody>
                         {subinfoArray[1]?.map(
                           (cells: string[], cellskey: string) => (
                             <TableRow key={cellskey}>
                               {cells?.map((cell, cellkey) => (
-                                <TableCell key={cellkey}>
-                                  {cell.toString()}
+                                <TableCell className="border" key={cellkey}>
+                                  {cell ? cell.toString() : "-"}
                                 </TableCell>
                               ))}
                             </TableRow>
