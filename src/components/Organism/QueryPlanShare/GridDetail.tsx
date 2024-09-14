@@ -94,14 +94,18 @@ const GridDetail = (props: propsType) => {
 
   return (
     <>
-      <div className="px-10">
+      <div className="">
         <Table>
           <TableBody>
             {data.map((each, index) => (
               <>
                 <TableRow key={index}>
+                  <TableCell className="bg-red-300 text-white font-bold border border-gray-300 w-[5px] p-0 min-w-0">
+                    {/* コンテンツを何も表示しない場合 */}
+                    &nbsp;
+                  </TableCell>
                   <TableCell className="p-1 w-1/5">{each.title}</TableCell>
-                  <TableCell className="p-1 w-3/5">
+                  <TableCell className="p-1 w-4/5">
                     {getDetailCell(each.title, each.xml)}
                   </TableCell>
                 </TableRow>

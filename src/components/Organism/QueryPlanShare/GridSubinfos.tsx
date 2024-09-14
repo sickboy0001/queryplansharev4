@@ -91,6 +91,7 @@ const GridSubinfos = (props: propsType) => {
           {subinfos != null
             ? subinfos.map((subinfoArray, key) => (
                 <TableRow key={key}>
+                  <TableCell className="bg-blue-300 text-white font-bold border border-gray-300 w-[5px] p-0"></TableCell>
                   <TableCell>{subinfoArray[0]}</TableCell>
                   <TableCell>
                     <Table className=" border border-gray-300">
@@ -99,7 +100,10 @@ const GridSubinfos = (props: propsType) => {
                           (cells: string[], cellskey: string) => (
                             <TableRow key={cellskey}>
                               {cells?.map((cell, cellkey) => (
-                                <TableCell className="border" key={cellkey}>
+                                <TableCell
+                                  className="border py-1 px-2"
+                                  key={cellkey}
+                                >
                                   {cell ? cell.toString() : "-"}
                                 </TableCell>
                               ))}
